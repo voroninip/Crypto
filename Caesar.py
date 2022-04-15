@@ -24,7 +24,7 @@ def encrypt_by_caesar(input_for_encrypt):  # encrypting by generated shift
             encrypted += chr((ord(char) + generated_shift - 65) % 26 + 65)
         else:
             encrypted += chr((ord(char) + generated_shift - 97) % 26 + 97)
-    return encrypted, "generated shift is: " + str(generated_shift)  # returns encrypted text and generated key
+    return encrypted, "\n\nGenerated shift is: " + str(generated_shift)  # returns encrypted text and generated shift
 
 
 def decrypt_by_caesar_yourself(input_for_decrypt, encrypting_shift):  # decrypting by known shift
@@ -55,14 +55,14 @@ def frequency_analysis_for_caesar(text_for_decrypt):  # decrypting by generated 
         if frequency[i] == max(frequency):
             most_frequent = i
             break
-    determined_shift = most_frequent + 65 - ord('E')
+    calc_shift = most_frequent + 65 - ord('E')  # 'E' is the most frequently encountered letter of the Latin alphabet
 
     for i in range(len(text_for_decrypt)):
         char = text_for_decrypt[i]
         if ord(char) < 65 or ord(char) in range(91, 97) or 122 < ord(char):
             maybe_encrypted += char
         elif char.isupper():
-            maybe_encrypted += chr((ord(char) - determined_shift - 65) % 26 + 65)
+            maybe_encrypted += chr((ord(char) - calc_shift - 65) % 26 + 65)
         else:
-            maybe_encrypted += chr((ord(char) - determined_shift - 97) % 26 + 97)
-    return maybe_encrypted
+            maybe_encrypted += chr((ord(char) - calc_shift - 97) % 26 + 97)
+    return maybe_encrypted, "\n\nCalculated shift is: " + str(calc_shift)
