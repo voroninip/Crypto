@@ -4,21 +4,16 @@ from string import ascii_uppercase
 from string import ascii_lowercase
 
 
-def encrypt_by_vernam_yourself(input_for_encrypt, key_word):  # encrypting by your own key word
+def encrypt_by_vernam_yourself(input_for_encrypt, key_word):  # encrypting by your own keyword
     encrypted = ""
     for i in range(len(input_for_encrypt)):
         char = input_for_encrypt[i]
         key_char = key_word[i % len(key_word)]
-        if ord(char) < 65 or ord(char) in range(91, 97) or 122 < ord(char):
-            encrypted += char
-        elif char.isupper():
-            encrypted += chr(ord(char) ^ ord(key_char.upper()))
-        else:
-            encrypted += chr(ord(char) ^ ord(key_char.lower()))
+        encrypted += chr(ord(char) ^ ord(key_char))
     return encrypted
 
 
-def encrypt_by_vernam(input_for_encrypt):  # encrypting by generated key word
+def encrypt_by_vernam(input_for_encrypt):  # encrypting by generated keyword
     encrypted = ""
     if input_for_encrypt.isupper():
         key_word = (''.join(choice(ascii_uppercase) for i in range(len(input_for_encrypt))))
@@ -29,31 +24,21 @@ def encrypt_by_vernam(input_for_encrypt):  # encrypting by generated key word
     for i in range(len(input_for_encrypt)):
         char = input_for_encrypt[i]
         key_char = key_word[i % len(key_word)]
-        if ord(char) < 65 or ord(char) in range(91, 97) or 122 < ord(char):
-            encrypted += char
-        elif char.isupper():
-            encrypted += chr(ord(char) ^ ord(key_char.upper()))
-        else:
-            encrypted += chr(ord(char) ^ ord(key_char.lower()))
-    return encrypted, "generated key word is: " + key_word
+        encrypted += chr(ord(char) ^ ord(key_char))
+    return encrypted, "\n\nGenerated keyword is: " + str(key_word)
 
 
-def decrypt_by_vernam_yourself(input_for_decrypt, key_word):  # decrypting by known key word
+def decrypt_by_vernam_yourself(input_for_decrypt, key_word):  # decrypting by known keyword
     decrypted = ""
     for i in range(len(input_for_decrypt)):
         char = input_for_decrypt[i]
         key_char = key_word[i % len(key_word)]
-        if ord(char) < 65 or ord(char) in range(91, 97) or 122 < ord(char):
-            decrypted += char
-        elif char.isupper():
-            decrypted += chr(ord(char) ^ ord(key_char.upper()))
-        else:
-            decrypted += chr(ord(char) ^ ord(key_char.upper()))
+        decrypted += chr(ord(char) ^ ord(key_char))
     return decrypted
 
 
-def decrypt_by_vernam(input_for_decrypt):  # decrypting by generated key word
-    encrypted = ""
+def decrypt_by_vernam(input_for_decrypt):  # decrypting by generated keyword
+    decrypted = ""
     if input_for_decrypt.isupper():
         key_word = (''.join(choice(ascii_uppercase) for i in range(len(input_for_decrypt))))
     elif input_for_decrypt.islower():
@@ -63,10 +48,5 @@ def decrypt_by_vernam(input_for_decrypt):  # decrypting by generated key word
     for i in range(len(input_for_decrypt)):
         char = input_for_decrypt[i]
         key_char = key_word[i % len(key_word)]
-        if ord(char) < 65 or ord(char) in range(91, 97) or 122 < ord(char):
-            encrypted += char
-        elif char.isupper():
-            encrypted += chr(ord(char) ^ ord(key_char.upper()))
-        else:
-            encrypted += chr(ord(char) ^ ord(key_char.upper()))
-    return encrypted, "generated key word is: " + key_word
+        decrypted += chr(ord(char) ^ ord(key_char))
+    return decrypted, "\n\nGenerated keyword is: " + str(key_word)
