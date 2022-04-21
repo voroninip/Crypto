@@ -41,17 +41,10 @@
   --out OUTPUT_FILE     Destination file to paste result.
 
 
-Эта памятка всегда достапна из --help:
+Эта памятка всегда доступна из --help:
 Например такой ввод в командную строку: C:\Users\Me> python PycharmProjects\Crypto\main.py --help
 
 А пример рабочего ввода:
 C:\Users\Me> python PycharmProjects\Crypto\main.py --in="C:\Users\Me\Desktop\input.txt" --task="decrypt" --cipher="Vigenere" --keyword="vdsasv"
 --out="C:\Users\Me\Desktop\output.txt" 
-
-
-
-
-
-
-
 
